@@ -229,5 +229,19 @@ interface Array<T> {
      */
     Concat(concatWith: T[]): T[];
 
+    /**
+     * Counts the items which are matching the given expression.
+     * @param expr T The expression object for comparision.
+     * @returns The number of items which are matching the expression.
+     */
+    Count(expr?: T): number;
+
+    /**
+     * Counts the items which are matching the given expression function.
+     * @param expr Function The expression function which is used for matching.
+     * @returns The count of items matching with the expression function.
+     */
+    Count(expr?: (item: T, index: number) => boolean): number;
+
     // ReSharper enable InconsistentNaming
 }

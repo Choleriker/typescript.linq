@@ -16,6 +16,20 @@ class LinqError extends Error {
 // ReSharper disable Lambda
 // ReSharper disable VariableCanBeMadeConst
 
+Array.prototype.Count = function<TItem>(expr?: any): number {
+    if (expr === undefined) {
+        return this.length;
+    }
+    var fn = typeof expr == 'function' ? expr : (item) => expr === item;
+    var cnt = 0;
+    for (var i = 0; i < this.length; i++) {
+        if (fn(this[i], i)) {
+            cnt++;
+        }
+    }
+    return cnt;
+}
+
 Array.prototype.Concat = function<TItem>(concatWith: TItem[]): TItem[] {
     var back: TItem[] = [];
     this.forEach(i => back.push(i));

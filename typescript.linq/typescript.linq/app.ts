@@ -51,6 +51,7 @@ class TsLinqTester {
         Starts all tests. Tests are methods which are starting with "test"
     **/
     startTests() {
+        this.test_Count();
         this.test_Concat();
         this.test_Take();
         this.test_Aggregate();
@@ -71,6 +72,19 @@ class TsLinqTester {
         this.test_Select();
         this.test_Single();
         this.test_SingleOrDefault();
+    }
+
+    /**
+     * Test method for Count().
+     * @returns {} 
+     */
+    test_Count() {
+        this.logger.log('Testing Count() without expression');
+        this.assert(() => [1, 2, 3, 4].Count() === 4, "Expected count is wrong.");
+        this.logger.log('Testing Count() with expression method');
+        this.assert(() => [1, 4, 3, 4].Count(i => i === 4) === 2, "Expected count is wrong.");
+        this.logger.log('Testing Count() with expression object');
+        this.assert(() => [1, 4, 3, 4].Count(4) === 2, "Expected count is wrong.");
     }
 
     /**

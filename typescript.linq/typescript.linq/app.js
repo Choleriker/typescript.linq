@@ -53,6 +53,7 @@ var TsLinqTester = (function () {
         Starts all tests. Tests are methods which are starting with "test"
     **/
     TsLinqTester.prototype.startTests = function () {
+        this.test_Count();
         this.test_Concat();
         this.test_Take();
         this.test_Aggregate();
@@ -73,6 +74,18 @@ var TsLinqTester = (function () {
         this.test_Select();
         this.test_Single();
         this.test_SingleOrDefault();
+    };
+    /**
+     * Test method for Count().
+     * @returns {}
+     */
+    TsLinqTester.prototype.test_Count = function () {
+        this.logger.log('Testing Count() without expression');
+        this.assert(function () { return [1, 2, 3, 4].Count() === 4; }, "Expected count is wrong.");
+        this.logger.log('Testing Count() with expression method');
+        this.assert(function () { return [1, 4, 3, 4].Count(function (i) { return i === 4; }) === 2; }, "Expected count is wrong.");
+        this.logger.log('Testing Count() with expression object');
+        this.assert(function () { return [1, 4, 3, 4].Count(4) === 2; }, "Expected count is wrong.");
     };
     /**
      * Tests for Concat() method.

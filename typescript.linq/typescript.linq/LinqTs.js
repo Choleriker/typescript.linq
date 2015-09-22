@@ -20,6 +20,19 @@ var LinqError = (function (_super) {
 })(Error);
 // ReSharper disable Lambda
 // ReSharper disable VariableCanBeMadeConst
+Array.prototype.Count = function (expr) {
+    if (expr === undefined) {
+        return this.length;
+    }
+    var fn = typeof expr == 'function' ? expr : function (item) { return expr === item; };
+    var cnt = 0;
+    for (var i = 0; i < this.length; i++) {
+        if (fn(this[i], i)) {
+            cnt++;
+        }
+    }
+    return cnt;
+};
 Array.prototype.Concat = function (concatWith) {
     var back = [];
     this.forEach(function (i) { return back.push(i); });
