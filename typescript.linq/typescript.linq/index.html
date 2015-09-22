@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>LinqTs - Tests</title>
+    <link rel="stylesheet" href="app.css" type="text/css" />
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="linqts.js"></script>
+    <script src="app.js"></script>
+</head>
+<body>
+    <h1>Test Results for the LinqTs library</h1>
+
+    <div id="content"></div>
+    <script>
+        $(document).ready(function () {
+            var tester = new TsLinqTester(new Logger((msg) => {
+                $('#content').html($('#content').html() + "<br/>" + msg);
+            }));
+            tester.startTests();
+        });
+    </script>
+</body>
+</html>
